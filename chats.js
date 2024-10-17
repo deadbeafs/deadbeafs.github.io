@@ -17,15 +17,15 @@ async function listChats(){
 	try{
 		bulletin = JSON.parse(bulletin);
 		let keysMap = await getDatabaseData(dbInstance, 2);
-		console.log(keysMap);
+		console.log("keys:" + keysMap);
 		for(let i = 0; i < bulletin.bn.length; i++){
 			try{
 				let text = bulletin.bn[i].l_msg["text"];
 				try{
 				if(bulletin.bn[i].type == "private"){
-					let encryptedData = bulletin.bn[i].l_msg["cipherdata"];
 					if(keysMap[bulletin.bn[i]["user_id"]]){
-						let chatKey = base64Decode(keysMap[bulletin.bn[i]["user_id"]].trim());
+						let encryptedData = bulletin.bn[i].l_msg["cipherdata"];
+						let chatKey = base64Decode(keysMap[bulletin.bn[i]["user_id"]]);
 						let cdata = await decryptAESGCM(base64Decode(encryptedData), chatKey);
 						cdata = safeTextDecoder(cdata).split(":");
 						let aesKey = base64Decode(cdata[0]);
