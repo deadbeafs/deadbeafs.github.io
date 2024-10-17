@@ -832,7 +832,7 @@ async function mainKeyExchange(){
 			if(response == "state.KEY_SAVED"){
 				await tellweb.applyEncryptedKey(await encryptDataPass(localStorage.tw1_key, localStorage.registered));
 			}
-			localStorage.remove("registered");
+			localStorage.removeItem("registered");
 		}
 	}else{
 		if(response.startsWith("MII")){
@@ -844,7 +844,7 @@ async function mainKeyExchange(){
 				if(decryptedData.startsWith("MII") && !localStorage.tw1_key){
 					localStorage.setItem("tw1_key", localStorage.tw1_key);
 				}
-				localStorage.remove("login");
+				localStorage.removeItem("login");
 			}
 		}
 	}
