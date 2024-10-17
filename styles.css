@@ -1,0 +1,81 @@
+body {
+	background-color: black;
+}
+
+.loader {
+	border: 4px solid transparent;
+	border-top: 4px solid #80deea;
+	border-radius: 84%;
+	width: 40px;
+	height: 40px;
+	-webkit-animation: spin 4s linear infinite;
+	animation: spin 4s linear infinite;
+}
+
+.box {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	margin: 0;
+}
+
+.login {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+}
+
+.title {
+	font-family: Verdana;
+}
+
+.login * {
+	color: white;
+	margin-bottom: 1em;
+}
+
+.name {
+	margin-bottom: 0.1em;
+}
+
+.error {
+	font-family: verdana;
+	color: #c62828;
+}
+
+.loginBtn {
+	background-color: black;
+	filter: drop-shadow(0 0 0.20rem #80deea);
+	border-radius: 4px;
+	width: 21em;
+	height: 21px;
+	font-family: 'Courier New';
+}
+
+.username {
+	border-bottom: 4px solid #80deea;
+	background-color: black;
+}
+
+.password {
+	border-bottom: 4px solid #80deea;
+	background-color: black;
+}
+
+@-moz-keyframes spin {
+	0% { -moz-transform: rotate(0deg); }
+	100% { -moz-transform: rotate(360deg); }
+}
+
+@-webkit-keyframes spin {
+	0% { -webkit-transform: rotate(0deg); }
+	100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
