@@ -381,7 +381,7 @@ var twapi = class {
 		http.setRequestHeader("Content-Type", "application/json");
 		console.log("requesting " + location + "; encrypted=" + encrypted);
 		data = JSON.parse(data);
-		data["_utimestamp"] = Date.now();
+		data["_utimestamp"] = parseInt(Date.now() / 1000);
 		data["_uvtimestamp"] = 8;
 		data = JSON.stringify(data);
 		if(encrypted){
@@ -785,7 +785,6 @@ async function saveChats(dbInstance){
 	let chats = await getDatabaseData(dbInstance, 2);
 	chats = await createChatArray(chats);
 	chats = JSON.stringify(chats);
-	console.log(chats);
 	let storeKey = new Uint8Array(32);
 	crypto.getRandomValues(storeKey);
 	console.log("[STORE] Creating storeKey");
