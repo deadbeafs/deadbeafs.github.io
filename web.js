@@ -382,7 +382,7 @@ var twapi = class {
 		console.log("requesting " + location + "; encrypted=" + encrypted);
 		data = JSON.parse(data);
 		data["_utimestamp"] = parseInt(Date.now() / 1000);
-		data["_uvtimestamp"] = 8;
+		data["_uvtimestamp"] = 15;
 		data = JSON.stringify(data);
 		if(encrypted){
 			data = await createEncryptedPayload(data, pk);
