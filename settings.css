@@ -1,0 +1,66 @@
+body {
+	background-color: black;
+}
+
+p {
+	color: white;
+	font-family: Verdana, Arial, sans-serif;
+}
+
+a:link {
+	color: #80deea;
+}
+
+a:visited {
+	color: #80deea;
+}
+
+a:hover {
+	color: #80deea;
+}
+
+.profile_line * {
+	display: inline;
+	line-height: 50px;
+	vertical-align: middle;
+	font-size: 1.5em;
+}
+
+.add_profile_photo {
+	float: right;
+	margin-left: 8px;
+	margin-top: 8px;
+}
+
+.profile-photo {
+	float: right;
+	width: 64px;
+	height: 64px;
+	border-radius: 50%;
+}
+
+.username_line * {
+	display: inline;
+	line-height: 50px;
+	vertical-align: middle;
+	font-size: 21px;
+	margin-top: 8px;
+}
+
+.changename_line * {
+	display: inline;
+	line-height: 50px;
+	vertical-align: middle;
+	font-size: 18px;
+	margin-top: 4px;
+}
+
+.chat_settings * {
+	display: inline;
+	line-height: 50px;
+	vertical-align: middle;
+}
+
+.version {
+	bottom: 0;
+}
