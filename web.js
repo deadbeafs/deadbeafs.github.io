@@ -778,7 +778,11 @@ async function restoreChats(dbInstance){
 		chats = JSON.parse(chats);
 		let newJson = {};
 		for(let i = 0; i < chats["chats"].length; i++){
-			newJson[chats["chats"][i]["chat_id"]] = chats["chats"][i]["key"].trim();
+			try{
+				newJson[chats["chats"][i]["chat_id"]] = chats["chats"][i]["key"];
+			}catch(e){
+				console.log("[restore] error: " + e);
+			}
 		}
 		newJson = Object.assign({}, newJson, chatData);
 		await addDatabaseData(dbInstance, newJson, 2);
