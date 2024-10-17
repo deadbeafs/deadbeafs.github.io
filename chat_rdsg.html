@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<title>Tellweb</title>
+	<link rel="stylesheet" href="chat.css">
+	<meta name="viewport" content="width=device-width, initial-scale=0.55, user-scalable=no"/>
+</head>
+<body>
+	<div id="toolbar" class="toolbar">
+		<img src="/default.webp" class="profile_photo" id="profile_photo">
+		<p id="chatName">Loading...</p>
+		<div id="loadingBar" style="border: 1px solid #80deea; border-top: 1px solid transparent; border-radius: 50%; width: 8px; height: 8px; animation: spin 0.6s linear infinite; margin-right: 8px;"></div>
+	</div><br>
+	<button id="loadMore" class="loadMoreBtn">Load More</button>
+	<div id="messages"><p class="emptyChat" id="emptyChat">Loading...</p></div><br>
+	<div class="inputbar">
+		<button class="send-btn" type="button" name="sendfile" id="sendfile-btn"><svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="28px" fill="#80beef"><path d="M452-202h60v-201l82 82 42-42-156-152-154 154 42 42 84-84v201ZM220-80q-24 0-42-18t-18-42v-680q0-24 18-42t42-18h361l219 219v521q0 24-18 42t-42 18H220Zm331-554v-186H220v680h520v-494H551ZM220-820v186-186 680-680Z"/></svg></button>
+		<input class="msg-input" type="text" rows="3" placeholder="Message" name="message" id="message"/>
+		<button class="send-btn" type="button" name="send" id="send-btn"><svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="28px" fill="#80beef"><path d="m556-130-53.5-53.5 144-143H210V-790h75v388.5h361.5L503-545l52.5-53.5L790-364 556-130Z"/></svg></button>
+	</div>
+</body>
+</html>
+<script src="/web.js"></script>
+<script src="/ui.js"></script>
+<script src="/chat.js"></script>

@@ -1,0 +1,130 @@
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+p {
+	color: white;
+	font-size: 18px;
+	font-family: verdana;
+}
+
+body {
+	background-image: url("/background.webp");
+	background-attachment: fixed;
+	background-position: center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+a:link {
+	color: #80deea;
+}
+
+a:visited {
+	color: #80deea;
+}
+
+a:hover {
+	color: #80deea;
+}
+
+.toolbar {
+	height: 32px;
+	width: 100%;
+	line-height: 1px;
+	background-color: black;
+	position: fixed;
+	display: flex;
+	flex-direction: row;
+	z-index: 999;
+	color: #fff;
+}
+
+.profile_photo {
+	width: 28px;
+	height: 28px;
+	border-radius: 50%;
+	margin-right: 8px;
+}
+
+.toolbar * {
+	vertical-align: center;
+}
+
+.inputbar {
+	height: 36px;
+	background-color: black;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+
+
+.inputbar .msg-input[type=text] {
+	width: 80%;
+	right: 7%;
+	background-color: black;
+	color: black
+	height: 36px;
+	font-size: 28px;
+	border: 1px solid transparent;
+}
+
+.send-btn{
+	color: #80deed;
+	background-color: black;
+	border: 1px solid transparent;
+}
+
+.send-btn:hover {
+	background-color: #80deea;
+	color: white;
+	cursor: pointer;
+}
+
+.messages {
+	min-width: 100vw;
+	overflow-y: auto;
+}
+
+.loadMoreBtn {
+	background-color: black;
+	filter: drop-shadow(0 0 0.20rem #80deea);
+	border-radius: 4px;
+	width: 144px;
+	height: 48px;
+	font-family: 'Courier New';
+	margin-top: 10%;
+	color: white;
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, 0);
+	font-size: 1.2rem;
+}
+
+.emptyChat, .emptyChat::before {
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, 0);
+	top: 50%;
+	background-color: rgba(198, 40, 40, 0.5);
+	border-radius: 10px 10px 10px 10px;
+}
+
+@-moz-keyframes spin {
+	0% { -moz-transform: rotate(0deg); }
+	100% { -moz-transform: rotate(360deg); }
+}
+
+@-webkit-keyframes spin {
+	0% { -webkit-transform: rotate(0deg); }
+	100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
