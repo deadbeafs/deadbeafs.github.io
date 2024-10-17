@@ -416,8 +416,8 @@ var twapi = class {
 
 	// do wrapPostRequest there
 
-	async logAction(username, password, name = "", inviteCode = ""){
-		return await this.postRequest("/logAction", JSON.stringify({"username": username, "pass": password, "name": name, "inv": inviteCode}));
+	async logAction(username, password, captcha, name="", inviteCode=""){
+		return await this.postRequest("/logAction", JSON.stringify({"username": username, "pass": password, "name": name, "inv": inviteCode, "c": captcha}));
 	}
 
 	async getChats(){

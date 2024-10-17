@@ -7,10 +7,12 @@
 <body>
 	<div class="login">
 		<p class="title">Tellweb</p>
-		<input class="name" id="name" placeholder="Name" hidden="true">
-		<p id="info" hidden="true">You need to enter name to register to app.</p>
+		<input class="name" id="name" placeholder="Name">
+		<p id="info">Name is only required only if you're registering.</p>
 		<input class="username" id="username" placeholder="Username">
 		<input class="password" id="password" type="password" placeholder="Password">
+		<img src="https://antibotcc0.pythonanywhere.com/captcha.png">
+		<input id="captcha" placeholder="CAPTCHA Answer">
 		<button class="loginBtn" id="loginButton">Log In / Register</button>
 		<p class="error" hidden="true" id="error" class="error"></p>
 		<div class="loader" id="loader" hidden="true"></div>
@@ -40,14 +42,14 @@
 		let password = document.querySelector("#password").value;
 		let name = document.querySelector("#name").value;
 		document.getElementById("loader").hidden = false;
-		let response = await tellweb.logAction(username, password, name);
+		let response = await tellweb.logAction(username, password, document.getElementById("captcha").value, name);
 		document.getElementById("loader").hidden = true;
 		if(response == "state.NAME_INVALID"){
 			document.getElementById("name").hidden = false;
 			document.getElementById("info").hidden = false;
 			document.getElementById("error").hidden = true;
 		}else{
-			if(isLoggedIn(response) && response != "state.LOGIN.FALSE -1 null"){
+			if(isLoggedIn(response) && response != "state.LOGIN.FALSE -1 null" && response != "state.CAPTCHA_INVALID"){
 				document.getElementById("error").hidden = true;
 				document.getElementById("error").innerText = "";
 				let auth = response.split(" ");
