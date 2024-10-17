@@ -31,7 +31,7 @@
 	async function whenLoaded(){
 		let auth_c = await authComplete();
 		if(!auth_c){
-			window.location.href = window.location.href + "chats";
+			window.location.href = window.location.origin + "/chats";
 		}
 	}
 
@@ -59,7 +59,7 @@
 				if(response.startsWith("state.LOGIN.TRUE")){
 					localStorage.setItem("login", password); // saved temporarily
 				}
-				window.location.href = window.location.href + "chats";
+				window.location.href = window.location.origin + "/chats";
 			}else{
 				document.getElementById("error").hidden = false;
 				if(response == "state.LOGIN.FALSE -1 null"){
