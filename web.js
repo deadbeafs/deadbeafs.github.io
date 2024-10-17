@@ -544,6 +544,10 @@ var twapi = class {
 		return await this.postRequest("/setChatThumbnail", JSON.stringify({"session": localStorage.session, "user_id": localStorage.user_id, "target_group": target_id, "thumbnail_url": thumbUrl}));
 	}
 
+	async getChatThumbnail(target_id){
+		return await this.postRequest("/getChatThumbnail", JSON.stringify({"session": localStorage.session, "user_id": localStorage.user_id, "target_id": target_id}));
+	}
+
 	async createChat(title, username, about, groupType="group", is_password="false", password=""){
 		let data = JSON.stringify({"session": localStorage.session, "my_id": localStorage.user_id, "password": password, "is_password": is_password, "username": username, "title": title, "description": about});
 		if(groupType == "group"){
@@ -589,6 +593,18 @@ var twapi = class {
 
 	async sendFile(chat_id, fileUri, text, fileCipher="", cipherData=""){
 		return await this.postRequest("/sendFile", JSON.stringify({"session": localStorage.session, "my_id": localStorage.user_id, "dst_id": chat_id, "file_uri": fileUri, "text": text, "flcipher": fileCipher, "cipherdata": cipherData}));
+	}
+
+	async newChatTitle(chat_id, title){
+		return await this.postRequest("/newChatTitle", JSON.stringify({"session": localStorage.session, "my_id": localStorage.user_id, "group_id": chat_id, "new_title": title}));
+	}
+
+	async setChatUsername(chat_id, username){
+		return await this.postRequest("/setChatUsername", JSON.stringify({"session": localStorage.session, "my_id": localStorage.user_id, "group_id": chat_id, "new_username": username}));
+	}
+
+	async setChatDescription(chat_id, about){
+		return await this.postRequest("/setChatDescription", JSON.stringify({"session": localStorage.session, "my_id": localStorage.user_id, "group_id": chat_id, "new_description": about}));
 	}
 }
 
