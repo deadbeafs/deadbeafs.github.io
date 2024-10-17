@@ -14,7 +14,6 @@
 		<button class="keyAction" id="keyAction">Restore main key</button>
 		<button class="keyActionDelete" id="deleteKey">Delete main key</button>
 		<button class="dumpKey" id="dumpKey">Save main key</button>
-		<button class="downloadFilesAuto" id="dwflauto">Download files automatically</button>
 		<input id="cdnServer" placeholder="CDN Server" value="https://twcdn.pythonanywhere.com">
 		<button class="saveCdn" id="saveCdn">Use CDN</button>
 		<p>
@@ -59,7 +58,7 @@
 		});
 		document.getElementById("keyAction").onclick = async function (e) {
 			await loadingBarHidden(false);
-			let response = await tellweb.getEncryptedMainKey();
+			let response = await tellweb.getEncryptedKey();
 			if(response != "state.EMPTY"){
 				let password = prompt("Enter password to decrypt key:");
 				let decryptedData = await decryptDataPass(response, password);
