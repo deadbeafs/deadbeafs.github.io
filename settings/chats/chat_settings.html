@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<head>
+	<title>Tellweb - Chat settings</title>
+	<link rel="stylesheet" href="/chat_settings.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+</head>
+<body>
+	<p class="title">Chat settings</p>
+	<div id="loadingBar" style="display: flex; flex-direction: inline; line-height: 10px; vertical-align: middle; display: none;">
+		<div class="loader" style="border: 1px solid #80deea; border-top: 1px solid transparent; border-radius: 84%; width: 8px; height: 8px; animation: spin 0.6s linear infinite; margin-right: 8px;"></div>
+		<div class="loading-text" style="font-size: 12px; color: #333; margin-bottom: 8px;">Loading...</div>
+	</div>
+	<div class="settings">
+		<button class="keyAction" id="keyAction">Restore main key</button>
+		<button class="keyActionDelete" id="deleteKey">Delete main key</button>
+		<button class="dumpKey" id="dumpKey">Save main key</button>
+		<button class="downloadFilesAuto" id="dwflauto">Download files automatically</button>
+		<input id="cdnServer" placeholder="CDN Server" value="https://twcdn.pythonanywhere.com">
+		<button class="saveCdn" id="saveCdn">Use CDN</button>
+		<p>
+			List of CDN servers:<br>
+			https://twcdn.pythonanywhere.com<br>
+		</p>
+	</div>
+	<div id="snackbar"><p id="snackbar_text"></p></div>
+</body>
+<script src="/web.js"></script>
+<script src="/ui.js"></script>
+<script>
+	var dbInstance;
+	async function isLoggedIn(){
+		return typeof localStorage.user_id == "undefined";
+	}
+
+	async function removeSession(){
+		localStorage.removeItem("session");
+		localStorage.removeItem("user_id");
+	}
+
+	async function loadingBarHidden(isHidden){
+		document.getElementById("loadingBar").style.display = isHidden ? "none" : "flex";
+	}
+
+	async function whenLoaded(){
+		let notLoggedIn = await isLoggedIn();
+		if(notLoggedIn){
+			window.location.href = window.location.origin;
+		}
+		dbInstance = await openDatabaseInstance();
+		let cdnData = await getDatabaseData(dbInstance, 23);
+		if(cdnData["usedCdn"]){
+			document.getElementById("cdnServer").value = cdnData["usedCdn"];
+		}
+		document.getElementById("saveCdn").addEventListener("click", async function(e){
+			let cdnUrl = document.getElementById("cdnServer").value;
+			if(cdnUrl){
+				await addDatabaseData(dbInstance, {"usedCdn": cdnUrl}, 23);
+			}
+		});
+		document.getElementById("keyAction").onclick = async function (e) {
+			await loadingBarHidden(false);
+			let response = await tellweb.getEncryptedMainKey();
+			if(response != "state.EMPTY"){
+				let password = prompt("Enter password to decrypt key:");
+				let decryptedData = await decryptDataPass(response, password);
+				if(decryptedData.startsWith("MII")){
+					localStorage.setItem("tw1_key", decryptedData);
+					let dialog = new dialogs();
+					dialog.title = "Key restoration";
+					dialog.message = "Key successfully restored.";
+					dialog.closeBtnText = "OK";
+					document.body.innerHTML += dialog.buildDialog();
+					document.getElementById("closeBtn").onclick = function (e) {
+						document.getElementById("dialog").remove();
+					};
+				}else{
+					let dialog = new dialogs();
+					dialog.title = "Key restoration error";
+					dialog.message = "Error occured while restoring your key. Error name: " + decryptedData;
+					dialog.closeBtnText = "OK";
+					document.body.innerHTML += dialog.buildDialog();
+					document.getElementById("closeBtn").onclick = function (e) {
+						document.getElementById("dialog").remove();
+					};
+				}
+			}
+			await loadingBarHidden(true);
+		};
+		document.getElementById("deleteKey").addEventListener("click", async function(e){
+			if(confirm("Delete main key from server? If you lost it, you will not be able to restore your chats.")){
+				await tellweb.deleteEncryptedKey();
+			}
+		});
+		document.getElementById("dumpKey").addEventListener("click", async function(e){
+			if(confirm("Do you really want to save your key on server?")){
+				let pass = prompt("Enter any password in field down. Using your account password is not recommended*");
+				if(pass.length < 10){
+					alert("Your password length is too short. Minimum length - 10 chars. Password strength: " + checkPassword(pass));
+				}else{
+					let response = await tellweb.applyEncryptedKey(await encryptDataPass(localStorage.tw1_key, pass));
+					alert("Server response: " + response);
+				}
+			}
+		});
+	}
+
+	if(window.addEventListener){
+		window.addEventListener('load', whenLoaded, false);
+	}else{
+		window.attachEvent('onload', whenLoaded);
+	}
+</script>
