@@ -17,7 +17,7 @@ async function listChats(){
 	try{
 		bulletin = JSON.parse(bulletin);
 		let keysMap = await getDatabaseData(dbInstance, 2);
-		console.log(bulletin);
+		console.log(keysMap);
 		for(let i = 0; i < bulletin.bn.length; i++){
 			try{
 				let text = bulletin.bn[i].l_msg["text"];
@@ -71,7 +71,6 @@ async function listChats(){
 			}
 			let chatsE = document.getElementById("chats");
 			chatsE.innerHTML = elements;
-			await addDatabaseData(dbInstance, JSON.stringify(userProfiles), 3);
 		}catch(e){
 			if(bulletin == "state.SESSION_INVALID"){
 				console.error("User's session invalid.");
