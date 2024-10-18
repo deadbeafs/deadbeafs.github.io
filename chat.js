@@ -579,11 +579,7 @@ async function Updater(){
 	setTimeout(loadMessagesPrivate, true, true, 1);
 	while(true){
 		try{
-			let needScroll = (window.innerHeight + window.pageYOffset) >= document.body.offsetHeight;
 			await loadMessagesPrivate(true, true);
-			if(needScroll){
-				await scrollToBottom();
-			}
 		}catch(e){
 			console.error(e);
 		}
