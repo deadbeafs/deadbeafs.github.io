@@ -54,6 +54,10 @@ function listMessages(){
 		}
 		if((window.innerHeight + window.pageYOffset + 20) >= document.body.offsetHeight){
 			scrollToBottom();
+		}else{
+			let stb = document.getElementById("stb");
+			stb.style.display = "block";
+			stb.innerText = "↓ New messages (" + changed + ")";
 		}
 	}
 }
@@ -130,8 +134,11 @@ async function loadChatProfilePhoto(){
 
 async function scrollToBottom(){
 	let e = document.getElementById("messages");
-	e.scrollTo(0, e.scrollHeight);
-	e.scrollTop = e.scrollHeight;
+	window.scrollTo(0, e.scrollHeight);
+	let stb = document.getElementById("stb");
+	if(stb.style.display == "block"){
+		stb.style.display = "none";
+	}
 }
 
 async function addMessageBefore(data, msg_id){
