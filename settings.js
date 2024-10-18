@@ -1,7 +1,7 @@
 var user_Name = "";
 var user_Username = "";
 var profile_id = gup("id", window.location.href);
-var isProfile = window.location.href.split("/")[3].startsWith("profile");
+var isProfile = profile_id != null;
 var dbInstance;
 
 async function isLoggedIn(){
