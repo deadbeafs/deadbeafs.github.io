@@ -490,7 +490,7 @@ async function loadMoreHandler(){
 
 async function swapKeysPrivate(){
 		let keysMap = await getDatabaseData(dbInstance, 2);
-		if(keysMap[user_id] == null){
+		if(keysMap){
 			await tellweb.createDialog(user_id);
 			let isInit = await tellweb.isInitiator(user_id);
 			if(isInit == "true"){
