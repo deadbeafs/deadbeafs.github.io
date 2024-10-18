@@ -25,8 +25,8 @@ async function listChats(){
 				if(bulletin.bn[i]["type"] == "private"){
 					if(keysMap[bulletin.bn[i]["user_id"]]){
 						let encryptedData = bulletin.bn[i]["l_msg"]["cipherdata"];
-						let userKey = base64Decode(keysMap[bulletin.bn[i]["user_id"]]);
-						console.log("userkey", userKey);
+						let userKey = keysMap[bulletin.bn[i]["user_id"]];
+						console.log("userkey" + userKey);
 						let cdata = await decryptAESGCM(base64Decode(encryptedData), userKey);
 						cdata = safeTextDecoder(cdata).split(":");
 						let aesKey = base64Decode(cdata[0]);
