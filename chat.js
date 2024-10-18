@@ -651,6 +651,8 @@ async function whenLoaded(){
 	}
 	await loadMessageActionDialog();
 	dbInstance = await openDatabaseInstance();
+	swapKeysPrivate();
+	swapKeysGroup();
 	displayData();
 	document.getElementById("loadMore").addEventListener("click", loadMoreHandler);
 	document.getElementById("send-btn").addEventListener("click", sendMessage);
