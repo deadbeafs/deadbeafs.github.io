@@ -31,11 +31,13 @@ async function listChats(){
 						let aesKey = base64Decode(cdata[0]);
 						let hmacKey = base64Decode(cdata[1]);
 						let dataIV = base64Decode(cdata[2]);
-						text = await decryptData(bulletin.bn[i].l_msg["text"], aesKey, dataIV, hmacKey);
+						text = await decryptData(text, aesKey, dataIV, hmacKey);
 					}
 				}else{
+					let chatKey = base64Decode(keysMap[bulletin.bn[i]["user_id"]]);
+					console.log(chatKey);
 					let encryptedText = base64Decode(new TextDecoder().decode(base64Decode(bulletin.bn[i].l_msg["text"])));
-					text = new TextDecoder().decode(await decryptAESGCM(encryptedText, base64Decode(keysMap[bulletin.bn[i]["user_id"]])));
+					text = new TextDecoder().decode(await decryptAESGCM(encryptedText, chatKey));
 				}
 				}catch(e){
 					console.error(e);
