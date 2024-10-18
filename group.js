@@ -168,6 +168,9 @@ async function whenLoaded(){
 			console.error(e);
 		}
 	}
+	if(!finishedHtml){
+		document.getElementById("usersTitle").style.display = "none";
+	}
 }
 
 if(window.addEventListener){
