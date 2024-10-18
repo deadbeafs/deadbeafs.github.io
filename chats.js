@@ -20,11 +20,11 @@ async function listChats(){
 		console.log(bulletin);
 		for(let i = 0; i < bulletin.bn.length; i++){
 			try{
-				let text = bulletin.bn[i].l_msg["text"];
+				let text = bulletin.bn[i]["l_msg"]["text"];
 				try{
 				if(bulletin.bn[i]["type"] == "private"){
 					if(keysMap[bulletin.bn[i]["user_id"]]){
-						let encryptedData = bulletin.bn[i].l_msg["cipherdata"];
+						let encryptedData = bulletin.bn[i]["l_msg"]["cipherdata"];
 						let userKey = base64Decode(keysMap[bulletin.bn[i]["user_id"]]);
 						let cdata = await decryptAESGCM(base64Decode(encryptedData), userKey);
 						cdata = safeTextDecoder(cdata).split(":");
