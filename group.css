@@ -16,7 +16,7 @@ label {
 	color: #fff;
 }
 
-button {
+#setChatPhoto, #setChatThumbnail, .actionBtn {
 	background-color: black;
 	filter: drop-shadow(0 0 0.20rem #80deea);
 	border-radius: 4px;
