@@ -34,7 +34,7 @@ async function listChats(){
 						text = await decryptData(text, aesKey, dataIV, hmacKey);
 					}
 				}else{
-					let chatKey = keysMap[bulletin.bn[i]["user_id"]]
+					let chatKey = base64Decode(keysMap[bulletin.bn[i]["user_id"]]);
 					console.log(chatKey);
 					let encryptedText = base64Decode(new TextDecoder().decode(base64Decode(bulletin.bn[i].l_msg["text"])));
 					text = new TextDecoder().decode(await decryptAESGCM(encryptedText, chatKey));
