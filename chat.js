@@ -53,7 +53,7 @@ function listMessages(){
 			});
 		}
 		if((window.innerHeight + window.pageYOffset + 20) >= document.body.offsetHeight){
-			await scrollToBottom();
+			scrollToBottom();
 		}
 	}
 }
