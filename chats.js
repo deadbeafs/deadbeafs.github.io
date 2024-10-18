@@ -112,18 +112,6 @@ async function whenLoaded(){
 	if(notLoggedIn){
 		window.location.href = window.location.href + "/..";
 	}
-	document.getElementById("settings").addEventListener("click", function (e) {
-		window.location.href = window.location.origin + "/settings";
-	});
-	document.getElementById("search").addEventListener("click", function (e) {
-		window.location.href = window.location.origin + "/search";
-	});
-	document.getElementById("newchat").addEventListener("click", function (e) {
-		window.location.href = window.location.origin + "/newchat";
-	});
-	document.getElementById("joinchat").addEventListener("click", function (e) {
-		window.location.href = window.location.origin + "/joinchat";
-	});
 	dbInstance = await openDatabaseInstance();
 	bgLoad();
 	setInterval(listChatsHandler, 5000);
