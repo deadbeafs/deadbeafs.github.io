@@ -19,7 +19,6 @@ function linkifyChat(c, uid, is_joined=true, username){
 async function whenLoaded(){
 	document.getElementById("search").addEventListener("click", async function(e) {
 		let response = await tellweb.searchUser(document.getElementById("searchText").value);
-		console.log(response);
 		if(response != "state.QUERY_EMPTY"){
 			response = JSON.parse(response);
 			let fullHtml = "";
