@@ -31,7 +31,14 @@ async function getGroup(){
 
 async function loadHandlers(){
 	userType = await tellweb.getMyChatType(chat_id);
+	if(userType == "types.USER"){
+		document.getElementById("setChatPhoto").style.display = "none";
+		document.getElementById("setChatThumbnail").style.display = "none";
+	}
 	let response = JSON.parse(await tellweb.getChatUsers(chat_id, offset, limit));
+	if(response["usrs"] == "state.GROUP_INVALID"){
+		return false;
+	}
 	offset += limit;
 	limit += offset
 	let actionBtn = "";
