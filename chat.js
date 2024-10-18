@@ -103,7 +103,7 @@ async function getTargetUser(){
 				console.error("Error occured when loading name: " + e);
 			}
 			swapKeysPrivate();
-			if(currentUser["profile_photos"]){
+			if(currentUser["profile_photos"][0]["url"]){
 				loadProfilePhoto(currentUser["profile_photos"][0]["url"]);
 			}
 		}catch(e){

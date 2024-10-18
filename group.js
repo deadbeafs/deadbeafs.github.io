@@ -39,7 +39,7 @@ async function loadHandlers(){
 	offset += limit;
 	limit += offset
 	let actionBtn = "";
-	if(response["usrs"] != "state.GROUP_INVALID"){
+	if(response["usrs"][0]["id"]){
 		for(let i = 0; i < response["usrs"].length; i++){
 			if(userType == "types.OWNER"){
 				actionBtn = `<button data-uid="` + response['usrs'][i]['id'] + `" class="actionBtn">Actions</button>`
