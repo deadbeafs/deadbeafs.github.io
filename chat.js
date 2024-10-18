@@ -103,8 +103,6 @@ async function getTargetUser(){
 			if(currentUser == "state.USER_INVALID"){
 				chatType = "group";
 				getTargetGroup();
-			}else{
-				getTargetUser();
 			}
 			console.error(e);
 		}
@@ -587,7 +585,7 @@ async function displayData(){
 	await loadingBarHidden(true);
 	document.getElementById("toolbar").addEventListener("click", async function(e){
 		if(chatType == "private"){
-	window.location.href = window.location.origin + "/profile?id=" + user_id;
+	window.location.href = window.location.origin + "/settings?id=" + user_id;
 		}else{
 			window.location.href = window.location.origin + "/group?id=" + user_id;
 		}
