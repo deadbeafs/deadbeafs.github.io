@@ -3,6 +3,7 @@ var user_Username = "";
 var profile_id = gup("id", window.location.href);
 var isProfile = profile_id != null;
 var dbInstance;
+var isGroup = false;
 
 async function isLoggedIn(){
 	return typeof localStorage.user_id == "undefined";
@@ -44,6 +45,7 @@ async function fulfillProfile(){
 }
 
 async function getTargetGroup(){
+	isGroup = true;
 	let currentChat = await tellweb.getChatInfo(profile_id);
 	currentChat = JSON.parse(currentChat);
 	document.getElementById("name").innerText = currentChat["title"];
@@ -127,6 +129,11 @@ async function whenLoaded(){
 			newProfilePhoto();
 		};
 		await fulfillProfile();
+		if(isGroup){
+			let og = document.getElementById("openGroup");
+			og.innerHTML = "Open group profile";
+			og.href = "/group?id=" + profile_id;
+		}
 }
 
 if(window.addEventListener){
