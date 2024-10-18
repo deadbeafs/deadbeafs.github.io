@@ -1,0 +1,56 @@
+body {
+	background-color: black;
+	padding: 0;
+	margin: 0;
+}
+
+p {
+	color: #fff;
+	font-family: Verdana !important;
+}
+
+label {
+	color: #fff;
+}
+
+button {
+	background-color: black;
+	filter: drop-shadow(0 0 0.20rem #80deea);
+	border-radius: 4px;
+	width: 100%;
+	height: 21px;
+	font-family: 'Courier New';
+	color: #fff;
+}
+
+a:link {
+	color: #80deea;
+}
+
+a:visited {
+	color: #80deea;
+}
+
+a:hover {
+	color: #80deea;
+}
+
+.bar {
+	display: flex;
+}
+
+#username {
+	width: 100%;
+}
+
+#password {
+	width: 100%;
+}
+
+#inviteCode {
+	width: 100%;
+}
+
+#status {
+	color: red;
+}

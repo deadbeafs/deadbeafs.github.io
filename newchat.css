@@ -1,0 +1,57 @@
+body {
+	background-color: black;
+	padding: 0;
+	margin: 0;
+}
+
+p {
+	color: #fff;
+	font-family: Verdana !important;
+}
+
+label {
+	color: #fff;
+}
+
+button {
+	background-color: black;
+	filter: drop-shadow(0 0 0.20rem #80deea);
+	border-radius: 4px;
+	width: 100%;
+	height: 21px;
+	font-family: 'Courier New';
+	color: #fff;
+}
+
+a:link {
+	color: #80deea;
+}
+
+a:visited {
+	color: #80deea;
+}
+
+a:hover {
+	color: #80deea;
+}
+
+.bar {
+	width: 100%;
+	display: flex;
+}
+
+.createGroup input {
+	width: 100%;
+	color: #fff;
+	background-color: black;
+}
+
+.createGroup textarea {
+	width: 100%;
+	color: #fff;
+	background-color: black;
+}
+
+.status {
+	color: red;
+}

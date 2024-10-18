@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<head>
+	<title>New chat</title>
+	<link rel="stylesheet" href="newchat.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+</head>
+<body>
+	<div class="bar">
+		<a class="back" href="/chats"><svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#80deea"><path d="M400-80 0-480l400-400 56 57-343 343 343 343-56 57Z"/></svg></a>
+		<p class="title">Create new chat</p>
+	</div>
+	<div id="createChat">
+		<div class="createGroup">
+			<input id="title" placeholder="Title"><br>
+			<input id="username" placeholder="Username"><br>
+			<textarea id="about" placeholder="Description"></textarea><br>
+			<input id="password" placeholder="Password" disabled="true"><br>
+		</div>
+		<div class="selectType">
+			<input type="radio" id="group" name="type" value="0" checked><label for="group">Create group</label><br>
+			<input type="radio" id="channel" name="type" value="1"><label for="channel">Create channel</label>
+		</div>
+		<input type="checkbox" id="hasPass"><label for="hasPass">Allow joining only by password</label><br>
+		<button id="newChat" class="newChat">Create chat</button>
+		<p>
+			Username - a link that can be used to join your chat.<br>
+			Usename can't contain special symbols (@, #, £, _, -) or spaces.<br>
+			Max length of username - 16.<br>
+			Max length of title - 32.<br>
+			Max length of description - 256.<br>
+			If you enable "joining only by password", new users will should enter password when joining your chat.
+		</p>
+		<p id="status" class="status"></p>
+	</div>
+</body>
+<script src="/web.js"></script>
+<script src="/newchat.js"></script>

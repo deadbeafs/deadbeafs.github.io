@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<head>
+	<title>Join chat</title>
+	<link rel="stylesheet" href="joinchat.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+</head>
+<body>
+	<div class="bar">
+		<a class="back" href="/chats"><svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#80deea"><path d="M400-80 0-480l400-400 56 57-343 343 343 343-56 57Z"/></svg></a>
+		<p class="title">Join chat</p>
+	</div>
+	<input id="username" placeholder="Chat username"><br>
+	<input id="inviteCode" placeholder="Invite code like username?p=DATAHERE123" disabled><br>
+	<input id="password" placeholder="Password" disabled><br>
+	<input type="checkbox" id="hasPass"><label for="hasPass">Need password?</label><br>
+	<input type="checkbox" id="useInvite"><label for="useInvite">Use invite link?</label><br>
+	<button id="joinBtn">Join chat</button>
+	<p id="status"></p>
+</body>
+<script src="/web.js"></script>
+<script src="/joinchat.js"></script>

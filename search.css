@@ -1,0 +1,112 @@
+body {
+	background-color: black;
+	padding: 0;
+	margin: 0;
+}
+
+p {
+	color: #fff;
+	font-family: Verdana !important;
+}
+
+input {
+	color: #fff;
+}
+
+label {
+	color: #fff;
+}
+
+button {
+	background-color: black;
+	filter: drop-shadow(0 0 0.20rem #80deea);
+	border-radius: 4px;
+	width: 21em;
+	height: auto;
+	font-family: 'Courier New';
+	color: #fff;
+}
+
+a:link {
+	color: #80deea;
+}
+
+a:visited {
+	color: #80deea;
+}
+
+a:hover {
+	color: #80deea;
+}
+
+#searchText {
+	width: 90%;
+}
+
+.searchbar {
+	display: flex;
+}
+
+.empty {
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, 0);
+	top: 50%;
+	background-color: rgba(198, 40, 40, 0.5);
+	border-radius: 10px 10px 10px 10px;
+	padding: 4px;
+	text-decoration: none;
+}
+
+.chat-user-item {
+	display: flex;
+	align-items: center;
+	padding: 10px;
+	border-bottom: 1px solid #e0e0e0;
+	transition: background-color 0.3s;
+}
+
+.chat-user-item:hover {
+	background-color: #f1f1f1;
+}
+
+.profile-photo {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	margin-right: 10px;
+}
+
+.user-info {
+	flex-grow: 1;
+}
+
+.user-name {
+	font-weight: bold;
+	color: white;
+}
+
+.last-message {
+	display: block;
+	color: #eeeeee;
+	font-size: 0.9em;
+}
+
+.message-details {
+	display: flex;
+	align-items: center;
+}
+
+.message-time {
+	color: #eeeeee;
+	font-size: 0.8em;
+	margin-right: 10px;
+}
+
+.unread-counter {
+	background-color: #80deea;
+	color: white;
+	border-radius: 12px;
+	padding: 5px 10px;
+	font-size: 0.8em;
+}
