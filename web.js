@@ -110,14 +110,14 @@ async function encryptServerMessage(data, pk=p_k){
 	return await encryptRSA(pk, data);
 }
 
-async function decryptAESGCM(data, key){
+async function decryptAESGCM(data, chatkey){
 	data = new Uint8Array(data);
 	let iv = data.slice(0, 12);
 	let tag = data.slice(data.length - 16, data.length);
 	let encryptedData = data.slice(12, data.length);
 	let subtleKey = await window.crypto.subtle.importKey(
 		'raw',
-		key,
+		chatkey,
 		{
 			name: 'AES-GCM',
 			modulusLength: 256
