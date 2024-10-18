@@ -36,25 +36,24 @@ async function loadHandlers(){
 		document.getElementById("setChatThumbnail").style.display = "none";
 	}
 	let response = JSON.parse(await tellweb.getChatUsers(chat_id, offset, limit));
-	if(response["usrs"] == "state.GROUP_INVALID"){
-		return false;
-	}
 	offset += limit;
 	limit += offset
 	let actionBtn = "";
-	for(let i = 0; i < response["usrs"].length; i++){
-		if(userType == "types.OWNER"){
-			actionBtn = `<button data-uid="` + response['usrs'][i]['id'] + `" class="actionBtn">Actions</button>`
+	if(response["usrs"] != "state.GROUP_INVALID"){
+		for(let i = 0; i < response["usrs"].length; i++){
+			if(userType == "types.OWNER"){
+				actionBtn = `<button data-uid="` + response['usrs'][i]['id'] + `" class="actionBtn">Actions</button>`
+			}
+			finishedHtml += new chats(response["usrs"][i]["name"], response["usrs"][i]["type"], response["usrs"][i]["username"], response["usrs"][i]["id"], "", "").buildComponent() + actionBtn;
 		}
-		finishedHtml += new chats(response["usrs"][i]["name"], response["usrs"][i]["type"], response["usrs"][i]["username"], response["usrs"][i]["id"], "", "").buildComponent() + actionBtn;
-	}
-	let e = document.getElementById("users");
-	e.innerHTML = finishedHtml;
-	let users = e.getElementsByClassName("actionBtn");
-	for(let i = 0; i < users.length; i++){
-		users[i].addEventListener("click", function(){
-			userActionDialog(users[i]);
-		});
+		let e = document.getElementById("users");
+		e.innerHTML = finishedHtml;
+		let users = e.getElementsByClassName("actionBtn");
+		for(let i = 0; i < users.length; i++){
+			users[i].addEventListener("click", function(){
+				userActionDialog(users[i]);
+			});
+		}
 	}
 }
 
