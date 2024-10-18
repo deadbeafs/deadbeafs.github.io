@@ -52,6 +52,9 @@ function listMessages(){
 				messageActionDialog(messagesl[i]);
 			});
 		}
+		if((window.innerHeight + window.pageYOffset + 20) >= document.body.offsetHeight){
+			await scrollToBottom();
+		}
 	}
 }
 
