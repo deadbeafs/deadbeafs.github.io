@@ -52,12 +52,12 @@ function listMessages(){
 				messageActionDialog(messagesl[i]);
 			});
 		}
-		if((window.innerHeight + window.pageYOffset + 20) >= document.body.offsetHeight){
+		if((window.innerHeight + window.pageYOffset + 15) >= document.body.offsetHeight){
 			scrollToBottom();
 		}else{
 			let stb = document.getElementById("stb");
 			stb.style.display = "block";
-			stb.innerText = "↓ New messages (" + changed + ")";
+			stb.innerText = "New messages (" + changed + ")";
 		}
 	}
 }
