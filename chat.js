@@ -132,6 +132,7 @@ async function scrollToBottom(){
 	let e = document.getElementById("messages");
 	e.scrollTo(0, e.scrollHeight);
 	e.scrollIntoView(false);
+	e.scrollTop = e.scrollHeight;
 }
 
 async function addMessageBefore(data, msg_id){
