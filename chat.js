@@ -245,7 +245,7 @@ async function loadMessagesPrivate(reversed=false, updateLastMessages=false, loa
 			let keysMap = await getDatabaseData(dbInstance, 2);
 			let chatKey;
 			if(keysMap != ""){
-				chatKey = base64Decode(keysMap[user_id].trim());
+				chatKey = base64Decode(keysMap[user_id]);
 			}
 			for(let i = 0; i < msgs.length; i++){
 				try{
