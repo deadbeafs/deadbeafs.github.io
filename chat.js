@@ -653,6 +653,7 @@ async function whenLoaded(){
 	swapKeysPrivate();
 	swapKeysGroup();
 	displayData();
+	tellweb.readMessages(user_id);
 	document.getElementById("loadMore").addEventListener("click", loadMoreHandler);
 	document.getElementById("send-btn").addEventListener("click", sendMessage);
 	document.getElementById("sendfile-btn").addEventListener("click", sendFileHandler);

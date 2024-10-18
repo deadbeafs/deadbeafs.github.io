@@ -606,6 +606,10 @@ var twapi = class {
 	async setChatDescription(chat_id, about){
 		return await this.postRequest("/setChatDescription", JSON.stringify({"session": localStorage.session, "my_id": localStorage.user_id, "group_id": chat_id, "new_description": about}));
 	}
+
+	async readMessages(chat_id){
+		return await this.postRequest("/readMessages", JSON.stringify({"session": localStorage.session, "my_id": localStorage.user_id, "dst_id": target_id}));
+	}
 }
 
 async function openDatabaseInstance() {
