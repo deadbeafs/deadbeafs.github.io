@@ -17,7 +17,7 @@ async function listChats(){
 	try{
 		bulletin = JSON.parse(bulletin);
 		let keysMap = await getDatabaseData(dbInstance, 2);
-		console.log("keys:" + keysMap[40]);
+		console.log(bulletin);
 		for(let i = 0; i < bulletin.bn.length; i++){
 			try{
 				let text = bulletin.bn[i].l_msg["text"];
