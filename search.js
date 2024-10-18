@@ -9,7 +9,7 @@ async function convertIdToName(chatType){
 }
 
 function linkifyChat(c, uid, is_joined=true, username){
-	let cLink = window.location.origin + "/profile?id=" + uid;
+	let cLink = window.location.origin + "/settings?id=" + uid;
 	if(!is_joined){
 		cLink = window.location.origin + "/joinchat?username=" + username + "&chat_id=" + uid;
 	}
