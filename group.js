@@ -39,12 +39,14 @@ async function loadHandlers(){
 	offset += limit;
 	limit += offset
 	let actionBtn = "";
-	if(response["usrs"][0]["id"]){
+	if(response["usrs"] != "state.GROUP_INVALID"){
 		for(let i = 0; i < response["usrs"].length; i++){
 			if(userType == "types.OWNER"){
 				actionBtn = `<button data-uid="` + response['usrs'][i]['id'] + `" class="actionBtn">Actions</button>`
 			}
-			finishedHtml += new chats(response["usrs"][i]["name"], response["usrs"][i]["type"], response["usrs"][i]["username"], response["usrs"][i]["id"], "", "").buildComponent() + actionBtn;
+			if(response["usrs"][i]["id"]){
+				finishedHtml += new chats(response["usrs"][i]["name"], response["usrs"][i]["type"], response["usrs"][i]["username"], response["usrs"][i]["id"], "", "").buildComponent() + actionBtn;
+			}
 		}
 		let e = document.getElementById("users");
 		e.innerHTML = finishedHtml;
