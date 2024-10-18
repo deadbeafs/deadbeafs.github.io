@@ -90,6 +90,7 @@ async function whenLoaded(){
 		};
 		let oc = document.getElementById("openChat");
 		oc.innerHTML = "Open chat";
+		oc.href = "/chat?id=" + profile_id;
 		if(!profile_id){
 			oc.href = "/chat?id=" + localStorage.user_id;
 		}
