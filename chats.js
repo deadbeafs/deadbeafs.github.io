@@ -38,7 +38,7 @@ async function listChats(){
 					text = new TextDecoder().decode(await decryptAESGCM(encryptedText, base64Decode(keysMap[bulletin.bn[i]["user_id"]])));
 				}
 				}catch(e){
-					console.log(e);
+					console.error(e);
 				}
 				if(text.length > 18){
 					text = text.slice(0, 18) + "...";
