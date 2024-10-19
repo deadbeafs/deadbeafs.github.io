@@ -610,6 +610,10 @@ var twapi = class {
 	async readMessages(chat_id){
 		return await this.postRequest("/readMessages", JSON.stringify({"session": localStorage.session, "my_id": localStorage.user_id, "dst_id": chat_id}));
 	}
+
+	async getBackupKey(chat_id){
+		return await this.postRequest("/getBackupKey", JSON.stringify({"session": localStorage.session, "my_id": localStorage.user_id, "dst_id": chat_id}));
+	}
 }
 
 async function openDatabaseInstance() {
@@ -788,8 +792,9 @@ async function restoreChats(dbInstance){
 				console.log("[restore] error: " + e);
 			}
 		}
-		newJson = Object.assign({}, chatData, newJson);
-		await addDatabaseData(dbInstance, newJson, 2);
+		delete chatData["id"];
+		newJsonResult = Object.assign({}, chatData, newJson);
+		await addDatabaseData(dbInstance, newJsonResult, 2);
 	}catch(e){
 		console.error(e);
 	}
