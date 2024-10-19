@@ -818,6 +818,7 @@ async function createChatArray(chatsMap){
 
 async function saveChats(dbInstance){
 	let chats = await getDatabaseData(dbInstance, 2);
+	delete chats["id"];
 	if(!chats || Object.keys(chats).length == 0){
 		return false; // disable overwriting with empty data
 	}
