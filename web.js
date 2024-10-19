@@ -785,6 +785,7 @@ async function restoreChats(dbInstance){
 		let response = await tellweb.getStoredChats();
 		response = JSON.parse(response);
 		let decryptedKey = await decryptRSA(localStorage.tw1_key, base64Decode(response["storeKey"]));
+		console.log("dec:" + decryptedKey);
 		let chats = new TextDecoder("utf-8").decode(await decryptAESGCM(base64Decode(response["data"]), decryptedKey));
 		chats = JSON.parse(chats);
 		let newJson = {};
