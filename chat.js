@@ -498,6 +498,7 @@ async function loadMoreHandler(){
 }
 
 async function swapKeysPrivate(){
+	try{
 		let keysMap = await getDatabaseData(dbInstance, 2);
 		if(keysMap){
 			await tellweb.createDialog(user_id);
@@ -527,6 +528,9 @@ async function swapKeysPrivate(){
 				await addDatabaseData(dbInstance, keysMap, 2);
 			}
 		}
+	}catch(e){
+		console.debug("[SwapPrivate] " + e);
+	}
 }
 
 async function swapKeysGroup(){
