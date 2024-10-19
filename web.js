@@ -823,6 +823,7 @@ async function saveChats(dbInstance){
 	encryptedKey = btoa(String.fromCharCode(...encryptedKey));
 	console.log("[STORE] Creating payload");
 	let payload = btoa(String.fromCharCode(...await encryptAESGCM(chats, storeKey)));
+	console.log(payload, chats);
 	const storingResult = await tellweb.storeChats(payload, encryptedKey);
 	console.log("[STORE] storing chats result: " + storingResult);
 }
