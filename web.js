@@ -851,8 +851,8 @@ async function generateMainKeys(autosave=false, askrevoke=true){
 	if(!localStorage.tw1_key && autosave){
 		if(askrevoke){
 			if(confirm("Revoke main key?")){
-				localStorage.setItem("tw1_keypb", pbk);
-				localStorage.setItem("tw1_key", pvk);
+				localStorage.setItem("tw1_keypb", pvk);
+				localStorage.setItem("tw1_key", pbk);
 			}
 		}else{
 			localStorage.setItem("tw1_keypb", pbk);
