@@ -101,7 +101,7 @@ async function bgLoad(){
 		await restoreChats(dbInstance);
 		await saveChats(dbInstance);
 	}catch(e){
-0		console.error(e);
+		console.error(e);
 	}
 }
 
