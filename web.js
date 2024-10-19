@@ -866,7 +866,7 @@ async function mainKeyExchange(){
 	let response = await tellweb.getSelfInitKey();
 	if(response == "state.KEY_EMPTY"){
 		await generateMainKeys(true, false);
-		response = await tellweb.setInitKey();
+		response = await tellweb.setInitKey(localStorage.tw1_keypb);
 		if(localStorage.registered){
 			if(response == "state.KEY_SAVED"){
 				await tellweb.applyEncryptedKey(await encryptDataPass(localStorage.tw1_key, localStorage.registered));
