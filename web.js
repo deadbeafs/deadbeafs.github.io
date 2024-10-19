@@ -779,6 +779,9 @@ async function delay(ms){
 async function restoreChats(dbInstance){
 	try{
 		let chatData = await getDatabaseData(dbInstance, 2);
+		if(!chatData){
+			chatData = {}
+		}
 		let response = await tellweb.getStoredChats();
 		response = JSON.parse(response);
 		let decryptedKey = await decryptRSA(localStorage.tw1_key, Uint8Array.from(atob(response["storeKey"]), c => c.charCodeAt(0)));
@@ -792,7 +795,6 @@ async function restoreChats(dbInstance){
 				console.log("[restore] error: " + e);
 			}
 		}
-		delete chatData["id"];
 		newJsonResult = Object.assign({}, chatData, newJson);
 		await addDatabaseData(dbInstance, newJsonResult, 2);
 	}catch(e){
