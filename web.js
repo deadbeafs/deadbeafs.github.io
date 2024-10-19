@@ -784,17 +784,18 @@ async function restoreChats(dbInstance){
 		}
 		let response = await tellweb.getStoredChats();
 		response = JSON.parse(response);
-		let decryptedKey = await decryptRSA(localStorage.tw1_key, Uint8Array.from(atob(response["storeKey"]), c => c.charCodeAt(0)));
-		let chats = new TextDecoder("utf-8").decode(await decryptAESGCM(Uint8Array.from(atob(response["data"]), c => c.charCodeAt(0)), decryptedKey));
+		let decryptedKey = await decryptRSA(localStorage.tw1_key, base64Decode(response["storeKey"]));
+		let chats = new TextDecoder("utf-8").decode(await decryptAESGCM(base64Decode(response["data"]), decryptedKey));
 		chats = JSON.parse(chats);
 		let newJson = {};
 		for(let i = 0; i < chats["chats"].length; i++){
 			try{
 				newJson[chats["chats"][i]["chat_id"]] = chats["chats"][i]["key"];
 			}catch(e){
-				console.log("[restore] error: " + e);
+				console.error("[restore] error: " + e);
 			}
 		}
+		console.log(newJson);
 		if(chatData == {}){
 			await addDatabaseData(dbInstance, newJson, 2);
 		}else{
