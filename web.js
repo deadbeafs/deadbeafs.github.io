@@ -54,7 +54,7 @@ function pemToBuffer(pub){
 async function importPublicKey(Pem) {
 	return await crypto.subtle.importKey(
 			"spki",
-			pemToBuffer(base64Decode(Pem)),
+			base64Decode(Pem),
 			{
 				name: "RSA-OAEP",
 				hash: "SHA-256",
@@ -68,7 +68,7 @@ async function importPublicKey(Pem) {
 async function importPrivateKey(Pem) {
 	return await crypto.subtle.importKey(
 			"pkcs8",
-			pemToBuffer(base64Decode(Pem)),
+			base64Decode(Pem),
 			{
 				name: "RSA-OAEP",
 				hash: "SHA-256",
