@@ -788,7 +788,7 @@ async function restoreChats(dbInstance){
 				console.log("[restore] error: " + e);
 			}
 		}
-		newJson = Object.assign({}, newJson, chatData);
+		newJson = Object.assign({}, chatData, newJson);
 		await addDatabaseData(dbInstance, newJson, 2);
 	}catch(e){
 		console.error(e);
@@ -894,4 +894,4 @@ function checkPassword(password) {
 	return strength;
 }
 
-var tellweb = new twapi(mainHostname);0
+var tellweb = new twapi(mainHostname);
