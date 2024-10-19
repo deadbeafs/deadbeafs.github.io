@@ -784,8 +784,7 @@ async function restoreChats(dbInstance){
 		}
 		let response = await tellweb.getStoredChats();
 		response = JSON.parse(response);
-		let decryptedKey = await decryptRSA(localStorage.tw1_key, base64Decode(response["storeKey"]));
-		console.log("dec:" + decryptedKey);
+		let decryptedKey = new Uint8Array(await decryptRSA(localStorage.tw1_key, base64Decode(response["storeKey"])));
 		let chats = new TextDecoder("utf-8").decode(await decryptAESGCM(base64Decode(response["data"]), decryptedKey));
 		chats = JSON.parse(chats);
 		let newJson = {};
@@ -796,7 +795,6 @@ async function restoreChats(dbInstance){
 				console.error("[restore] error: " + e);
 			}
 		}
-		console.log(newJson);
 		if(chatData == {}){
 			await addDatabaseData(dbInstance, newJson, 2);
 		}else{
@@ -820,6 +818,9 @@ async function createChatArray(chatsMap){
 
 async function saveChats(dbInstance){
 	let chats = await getDatabaseData(dbInstance, 2);
+	if(!chats || Object.keys(chats).length == 0){
+		return false; // disable overwriting with empty data
+	}
 	chats = await createChatArray(chats);
 	chats = JSON.stringify(chats);
 	let storeKey = new Uint8Array(32);
@@ -829,7 +830,6 @@ async function saveChats(dbInstance){
 	encryptedKey = btoa(String.fromCharCode(...encryptedKey));
 	console.log("[STORE] Creating payload");
 	let payload = btoa(String.fromCharCode(...await encryptAESGCM(chats, storeKey)));
-	console.log(payload, chats);
 	const storingResult = await tellweb.storeChats(payload, encryptedKey);
 	console.log("[STORE] storing chats result: " + storingResult);
 }
