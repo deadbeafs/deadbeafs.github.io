@@ -795,8 +795,12 @@ async function restoreChats(dbInstance){
 				console.log("[restore] error: " + e);
 			}
 		}
-		newJsonResult = Object.assign({}, chatData, newJson);
-		await addDatabaseData(dbInstance, newJsonResult, 2);
+		if(chatData == {}){
+			await addDatabaseData(dbInstance, newJson, 2);
+		}else{
+			newJsonResult = Object.assign({}, chatData, newJson);
+			await addDatabaseData(dbInstance, newJsonResult, 2);
+		}
 	}catch(e){
 		console.error(e);
 	}
