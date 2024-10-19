@@ -656,6 +656,7 @@ async function whenLoaded(){
 	}
 	await loadMessageActionDialog();
 	dbInstance = await openDatabaseInstance();
+	await createKeystore();
 	swapKeysPrivate();
 	swapKeysGroup();
 	displayData();

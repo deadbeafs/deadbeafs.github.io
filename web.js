@@ -909,4 +909,12 @@ function checkPassword(password) {
 	return strength;
 }
 
+async function createKeystore(){
+	let dbi = await openDatabaseInstance();
+	let r = await getDatabaseData(dbInstance, 2);
+	if(!r){
+		await addDatabaseData(dbInstance, {}, 2);
+	}
+}
+
 var tellweb = new twapi(mainHostname);
