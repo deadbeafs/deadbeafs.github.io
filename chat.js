@@ -529,7 +529,7 @@ async function swapKeysPrivate(){
 			}
 		}
 	}catch(e){
-		console.debug("[SwapPrivate] " + e);
+		console.debug("[SwapPrivate] " + e + "#" + e.lineNumber);
 	}
 }
 
