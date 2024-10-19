@@ -55,7 +55,7 @@ body {
 	font-family: 'Courier New';
 }
 
-.password, .username, #captcha {
+.name, .password, .username, #captcha {
 	border-bottom: 4px solid #80deea;
 	background-color: black;
 }

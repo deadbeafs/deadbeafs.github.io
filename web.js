@@ -783,6 +783,9 @@ async function restoreChats(dbInstance){
 			chatData = {}
 		}
 		let response = await tellweb.getStoredChats();
+		if(response == "state.UNKNOWN_USER"){
+			return false;
+		}
 		response = JSON.parse(response);
 		let decryptedKey = new Uint8Array(await decryptRSA(localStorage.tw1_key, base64Decode(response["storeKey"])));
 		let chats = new TextDecoder("utf-8").decode(await decryptAESGCM(base64Decode(response["data"]), decryptedKey));
@@ -874,6 +877,9 @@ async function mainKeyExchange(){
 			localStorage.removeItem("registered");
 		}
 	}else{
+		if(localStorage.tw1_keypb){
+			tellweb.setInitKey(localStorage.tw1_keypb);
+		}
 		if(response.startsWith("MII")){
 			if(response != localStorage.tw1_keypb && !localStorage.tw1_keypb){
 				localStorage.setItem("tw1_keypb", response);
