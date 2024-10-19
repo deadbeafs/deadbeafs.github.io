@@ -17,7 +17,6 @@ async function listChats(){
 	try{
 		bulletin = JSON.parse(bulletin);
 		let keysMap = await getDatabaseData(dbInstance, 2);
-		console.log(bulletin);
 		for(let i = 0; i < bulletin.bn.length; i++){
 			try{
 				let text = bulletin.bn[i]["l_msg"]["text"];
@@ -35,7 +34,6 @@ async function listChats(){
 					}
 				}else{
 					let chatKey = base64Decode(keysMap[bulletin.bn[i]["user_id"]]);
-					console.log(chatKey);
 					let encryptedText = base64Decode(new TextDecoder().decode(base64Decode(bulletin.bn[i].l_msg["text"])));
 					text = new TextDecoder().decode(await decryptAESGCM(encryptedText, chatKey));
 				}
@@ -100,10 +98,10 @@ async function listChatsHandler(){
 async function bgLoad(){
 	try{
 		await mainKeyExchange();
-		restoreChats(dbInstance);
+		await restoreChats(dbInstance);
 		await saveChats(dbInstance);
 	}catch(e){
-		console.error(e);
+0		console.error(e);
 	}
 }
 
